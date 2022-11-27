@@ -31,12 +31,11 @@ public class Pagamento implements java.io.Serializable {
 	public Pagamento() {
 	}
 
-	public Pagamento(PagamentoId id, Cliente cliente, Curso curso, Date data, int pagamentoId) {
+	public Pagamento(PagamentoId id, Cliente cliente, Curso curso, Date data) {
 		this.id = id;
 		this.cliente = cliente;
 		this.curso = curso;
 		this.data = data;
-		this.pagamentoId = pagamentoId;
 	}
 	
 	public String toString() {

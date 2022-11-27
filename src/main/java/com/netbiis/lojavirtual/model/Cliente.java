@@ -27,9 +27,10 @@ public class Cliente implements java.io.Serializable {
 	public Cliente() {
 	}
 
-	public Cliente(String nome, String email) {
+	public Cliente(String nome, String email, String cpf) {
 		this.nome = nome;
 		this.email = email;
+		this.cpf = cpf;
 	}
 
 	public Cliente(String nome, String email, Set<Pagamento> pagamentos) {
@@ -44,7 +45,6 @@ public class Cliente implements java.io.Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "cpf", unique = true, nullable = false, length = 14)
 	public String getCpf() {
