@@ -45,5 +45,7 @@
 	<classpathentry kind="lib" path="libs/txw2-2.3.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/shinji/workspace/eclipse/lojavirtual/libs/jakarta.servlet.jsp.jstl-2.0.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/shinji/workspace/eclipse/lojavirtual/libs/jakarta.servlet.jsp.jstl-api-2.0.0.jar"/>
+	<classpathentry kind="lib" path="libs/jakarta.servlet.jsp.jstl-2.0.0.jar"/>
+	<classpathentry kind="lib" path="libs/jakarta.servlet.jsp.jstl-api-2.0.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
