@@ -71,7 +71,14 @@ public class LojaVirtualDB {
 		return curso;
 	}
 	
-	public static void criarCurso(Curso novoCurso) {
+	public static Curso consultarCursoByTitulo(String titulo) {
+		TypedQuery<Curso> clienteQuery = em.createQuery("from Curso where titulo='" + titulo + "'", Curso.class);
+		List<Curso> cursos = clienteQuery.getResultList();
+
+		return cursos.get(0);
+	}
+	
+	public static Curso criarCurso(Curso novoCurso) {
 		tx.begin();
 		em.persist(novoCurso);
 		tx.commit();
