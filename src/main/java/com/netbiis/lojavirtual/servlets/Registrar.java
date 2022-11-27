@@ -7,9 +7,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.OutputStream;
+
 import java.io.PrintWriter;
 import java.io.Writer;
+
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
@@ -57,8 +58,10 @@ public class Registrar extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		Map<String, String[]> parametros = request.getParameterMap();
 
+		//variáveis auxiliares
 		String cpf, titulo;
 		int cursoId;
+		Curso curso; Cliente cliente; Pagamento pagamento; PagamentoId pid;
 
 		switch(servletPath) {
 
@@ -92,14 +95,14 @@ public class Registrar extends HttpServlet {
 		case "/consultarcliente" :
 
 			cpf = parametros.get("cpf")[0];
-			Cliente cliente = LojaVirtualDB.consultarCliente(cpf);
+			cliente = LojaVirtualDB.consultarCliente(cpf);
 			out.println(cliente);
 
 			break;
 		case "/consultarcurso" :
 
 			cursoId = Integer.parseInt(parametros.get("cursoId")[0]);
-			Curso curso = LojaVirtualDB.consultarCurso(cursoId);
+			curso = LojaVirtualDB.consultarCurso(cursoId);
 			out.println(curso);
 			out.println(parametros.get("cursoId")[0]);
 			
@@ -107,12 +110,45 @@ public class Registrar extends HttpServlet {
 		case "/consultarpagamento" :
 			cursoId = Integer.parseInt(parametros.get("cursoId")[0]);
 			cpf = parametros.get("cpf")[0];
-			PagamentoId pid = new PagamentoId(cursoId, cpf);
-			Pagamento pagamento = LojaVirtualDB.consultarPagamento(pid);
+			pid = new PagamentoId(cursoId, cpf);
+			pagamento = LojaVirtualDB.consultarPagamento(pid);
 			out.println(pagamento);
 			out.println(cursoId);
 			out.println(cpf);
 			break;
+		
+		case "/excluircliente" :
+
+			cpf = parametros.get("cpf")[0];
+			cliente = LojaVirtualDB.consultarCliente(cpf);
+			out.println(cliente);
+			LojaVirtualDB.excluirCliente(cliente);
+
+			out.println("cliente excluido");
+			break;
+		case "/excluircurso" :
+
+			cursoId = Integer.parseInt(parametros.get("cursoId")[0]);
+			curso = LojaVirtualDB.consultarCurso(cursoId);
+			out.println(curso);
+			out.println(parametros.get("cursoId")[0]);
+			
+			LojaVirtualDB.excluirCurso(curso);
+			out.println("curso excluido");
+			
+			break;
+		case "/excluirpagamento" :
+			cursoId = Integer.parseInt(parametros.get("cursoId")[0]);
+			cpf = parametros.get("cpf")[0];
+			pid = new PagamentoId(cursoId, cpf);
+			pagamento = LojaVirtualDB.consultarPagamento(pid);
+			out.println(pagamento);
+			out.println(cursoId);
+			out.println(cpf);
+			LojaVirtualDB.excluirPagamento(pagamento);
+			out.println("pagamento excluido");
+			break;
+		
 		default:
 			System.out.println("badrequest");
 		}
@@ -209,9 +245,8 @@ public class Registrar extends HttpServlet {
 			System.out.println("badrequest");
 		}
 
-		
-		
 		doGet(request, response);
+
 	}
 
 }

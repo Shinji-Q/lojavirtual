@@ -10,16 +10,6 @@
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
   <servlet>
-    <description>Página de cadastro de clientes no banco de dados</description>
-    <display-name>CadastrarCliente</display-name>
-    <servlet-name>CadastrarCliente</servlet-name>
-    <servlet-class>com.netbiis.lojavirtual.servlets.CadastrarCliente</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>CadastrarCliente</servlet-name>
-    <url-pattern>/CadastrarCliente</url-pattern>
-  </servlet-mapping>
-  <servlet>
     <description></description>
     <display-name>Registrar</display-name>
     <servlet-name>Registrar</servlet-name>
@@ -34,5 +24,20 @@
     <url-pattern>/consultarcliente</url-pattern>
     <url-pattern>/consultarcurso</url-pattern>
     <url-pattern>/consultarpagamento</url-pattern>
+    <url-pattern>/excluircliente</url-pattern>
+    <url-pattern>/excluircurso</url-pattern>
+    <url-pattern>/excluirpagamento</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <description></description>
+    <display-name>teste</display-name>
+    <servlet-name>teste</servlet-name>
+    <servlet-class>com.netbiis.lojavirtual.servlets.teste</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>teste</servlet-name>
+    <url-pattern>/teste</url-pattern>
   </servlet-mapping>
 </web-app>
