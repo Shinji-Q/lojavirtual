@@ -35,10 +35,12 @@ public class LojaVirtualDB {
 		return cli;
 	}
 	
-	public static void criarCliente(Cliente novoCliente) {
+	public static Cliente criarCliente(Cliente novoCliente) {
 		tx.begin();
 		em.persist(novoCliente);
 		tx.commit();
+		novoCliente = consultarCliente(novoCliente.getCpf());
+		return novoCliente;
 	}
 	
 	public static void alterarCliente(Cliente cli) {
@@ -58,9 +60,9 @@ public class LojaVirtualDB {
 	/******************************************************************************/
 
 	public static List<Curso> consultarTodosCursos(){
-		TypedQuery<Curso> clienteQuery = em.createQuery("from Curso", Curso.class);
-		List<Curso> clientes = clienteQuery.getResultList();
-		return clientes;
+		TypedQuery<Curso> cursoQuery = em.createQuery("from Curso", Curso.class);
+		List<Curso> cursos = cursoQuery.getResultList();
+		return cursos;
 	}
 	
 	public static Curso consultarCurso(int cursoId) {
@@ -73,6 +75,8 @@ public class LojaVirtualDB {
 		tx.begin();
 		em.persist(novoCurso);
 		tx.commit();
+		novoCurso = consultarCursoByTitulo(novoCurso.getTitulo());
+		return novoCurso;
 	}
 	
 	public static void alterarCurso(Curso curso) {
@@ -103,10 +107,12 @@ public class LojaVirtualDB {
 		return pagamento;
 	}
 	
-	public static void criarPagamento(Pagamento novoPagamento) {
+	public static Pagamento criarPagamento(Pagamento novoPagamento) {
 		tx.begin();
 		em.persist(novoPagamento);
 		tx.commit();
+		novoPagamento = consultarPagamento(novoPagamento.getId());
+		return novoPagamento;
 	}
 	
 	public static void alterarPagamento(Pagamento pagamento) {
