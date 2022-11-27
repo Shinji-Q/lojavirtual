@@ -52,6 +52,70 @@ public class Registrar extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String servletPath = request.getServletPath();
+		PrintWriter out = response.getWriter();
+		Map<String, String[]> parametros = request.getParameterMap();
+
+		String cpf, titulo;
+		int cursoId;
+
+		switch(servletPath) {
+
+		case "/registrarcliente" :
+
+			cpf =parametros.get("cpf")[0];
+			out.println(LojaVirtualDB.consultarCliente(cpf));
+			out.println("<br/>");
+
+			break;
+		case "/registrarcurso" :
+
+			// usar o método "getAttribute" faz o server não poder iniciar por alguma razão
+			//cursoId = (Integer) request.getAttribute("cursoId");
+			titulo = parametros.get("titulo")[0];
+			out.println(titulo);
+			out.println(LojaVirtualDB.consultarCursoByTitulo(titulo));
+			
+			break;
+		case "/registrarpagamento" :
+
+			cursoId = Integer.parseInt(parametros.get("cursoId")[0]);
+			cpf = parametros.get("cpf")[0];
+
+			out.println(cpf + " " + cursoId);
+			out.println("<br/>");
+			out.println(LojaVirtualDB.consultarPagamento(new PagamentoId(cursoId, cpf)));
+
+			break;
+
+		case "/consultarcliente" :
+
+			cpf = parametros.get("cpf")[0];
+			Cliente cliente = LojaVirtualDB.consultarCliente(cpf);
+			out.println(cliente);
+
+			break;
+		case "/consultarcurso" :
+
+			cursoId = Integer.parseInt(parametros.get("cursoId")[0]);
+			Curso curso = LojaVirtualDB.consultarCurso(cursoId);
+			out.println(curso);
+			out.println(parametros.get("cursoId")[0]);
+			
+			break;
+		case "/consultarpagamento" :
+			cursoId = Integer.parseInt(parametros.get("cursoId")[0]);
+			cpf = parametros.get("cpf")[0];
+			PagamentoId pid = new PagamentoId(cursoId, cpf);
+			Pagamento pagamento = LojaVirtualDB.consultarPagamento(pid);
+			out.println(pagamento);
+			out.println(cursoId);
+			out.println(cpf);
+			break;
+		default:
+			System.out.println("badrequest");
+		}
 	}
 
 	/**
@@ -69,6 +133,7 @@ public class Registrar extends HttpServlet {
 		int cursoId, dia, mes, ano;
 		Date data;
 		
+		System.out.println("inicio post");
 		//TODO avaliar e tratar exceções
 		switch(servletPath) {
 
@@ -101,7 +166,7 @@ public class Registrar extends HttpServlet {
 			
 			try { 
 				novoCurso = LojaVirtualDB.criarCurso(novoCurso);
-				request.setAttribute("cursoId", novoCurso.getCursoId());
+				//request.setAttribute("cursoId", novoCurso.getCursoId());
 			} catch ( Exception e ) {
 				System.out.println(e.getMessage());
 			}

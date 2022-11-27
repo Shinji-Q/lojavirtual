@@ -27,13 +27,19 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <form class="form-horizontal" role="form">
+            <!-- formulauro -->
+            <form class="form-horizontal" role="form" action="/lojavirtual/consultarcurso">
               <div class="form-group">
                 <div class="col-sm-2">
-                  <label for="inputEmail3" class="control-label">Informar o CURSO:</label>
+                  <label for="inputEmail3" class="control-label">Informar o id do CURSO:</label>
                 </div>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="inputEmail3" placeholder="CURSO" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Digite um CPF no formato: xxx.xxx.xxx-xx" required="">
+                  <input type="number" 
+                  name="cursoId"
+                  class="form-control" 
+                  id="inputEmail3" 
+                  placeholder="CURSO" 
+                  title="Digite o id do curso" required>
                 </div>
               </div>
               <div class="form-group">

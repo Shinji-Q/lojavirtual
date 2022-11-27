@@ -9,6 +9,8 @@ public class TestesJPA {
 	public static void main(String[] args) {
 		
 		List<Pagamento> pagamentos = LojaVirtualDB.consultarTodosPagamentos();
+		Curso cursoPorTitulo = LojaVirtualDB.consultarCursoByTitulo("Ana maria culinária");
+		System.out.println(cursoPorTitulo);
 		
 		pagamentos.forEach(System.out::println);
 		System.out.println(pagamentos.size());
