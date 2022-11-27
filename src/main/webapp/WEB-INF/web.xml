@@ -27,6 +27,9 @@
     <url-pattern>/excluircliente</url-pattern>
     <url-pattern>/excluircurso</url-pattern>
     <url-pattern>/excluirpagamento</url-pattern>
+    <url-pattern>/alterarcliente</url-pattern>
+    <url-pattern>/alterarcurso</url-pattern>
+    <url-pattern>/alterarpagamento</url-pattern>
   </servlet-mapping>
 
   <servlet>

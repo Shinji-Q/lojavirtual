@@ -25,13 +25,14 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <form class="form-horizontal" role="form">
+            <!-- formulauro -->
+            <form class="form-horizontal" role="form" action="/lojavirtual/alterarpagamento">
               <div class="form-group">
                 <div class="col-sm-3">
                   <label for="inputCPF" class="control-label">Informar o CPF:</label>
                 </div>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="inputCPF" placeholder="CPF" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Digite um CPF no formato: xxx.xxx.xxx-xx" required="">
+                  <input type="text" name="cpf" class="form-control" id="inputCPF" placeholder="CPF" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Digite um CPF no formato: xxx.xxx.xxx-xx" required>
                 </div>
               </div>
               <div class="form-group">
@@ -39,7 +40,7 @@
                   <label for="inputCURSO" class="control-label">Informar o CURSO:</label>
                 </div>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="inputCURSO" placeholder="CURSO">
+                  <input type="number" name="cursoId" class="form-control" id="inputCURSO" placeholder="ID CURSO">
                 </div>
               </div>
               <div class="form-group">
@@ -47,7 +48,7 @@
                   <label for="inputDATA" class="control-label">Informar a NOVA DATA DE INSCRIÇÃO:</label>
                 </div>
                 <div class="col-sm-9">
-                  <input type="date" class="form-control" id="inputDATA" title="Preencha o campo Nome" required="">
+                  <input type="date" name="data" class="form-control" id="inputDATA" title="Preencha o campo Nome" required>
                 </div>
               </div>
               <div class="form-group">

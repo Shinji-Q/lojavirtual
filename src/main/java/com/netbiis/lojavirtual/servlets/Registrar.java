@@ -59,8 +59,10 @@ public class Registrar extends HttpServlet {
 		Map<String, String[]> parametros = request.getParameterMap();
 
 		//variáveis auxiliares
-		String cpf, titulo;
-		int cursoId;
+		String cpf, nome, email, titulo, descricao, dataString;
+		BigDecimal preco;
+		int cursoId, dia, mes, ano;
+		Date data;
 		Curso curso; Cliente cliente; Pagamento pagamento; PagamentoId pid;
 
 		switch(servletPath) {
@@ -137,6 +139,7 @@ public class Registrar extends HttpServlet {
 			out.println("curso excluido");
 			
 			break;
+
 		case "/excluirpagamento" :
 			cursoId = Integer.parseInt(parametros.get("cursoId")[0]);
 			cpf = parametros.get("cpf")[0];
@@ -148,7 +151,77 @@ public class Registrar extends HttpServlet {
 			LojaVirtualDB.excluirPagamento(pagamento);
 			out.println("pagamento excluido");
 			break;
-		
+			
+			
+
+		case "/alterarcliente" :
+
+			cpf = parametros.get("cpf")[0];
+			nome = parametros.get("nome")[0];
+			email = parametros.get("email")[0];
+			cliente = LojaVirtualDB.consultarCliente(cpf);
+
+			out.println(cliente);
+
+			cliente.setNome(nome);
+			cliente.setEmail(email);
+			LojaVirtualDB.alterarCliente(cliente);
+
+			out.println("alterado para");
+			out.println(cliente);
+
+			break;
+		case "/alterarcurso" :
+
+			cursoId = Integer.parseInt(parametros.get("cursoId")[0]);
+			titulo = parametros.get("titulo")[0];
+			descricao = parametros.get("descricao")[0];
+			preco = new BigDecimal(parametros.get("preco")[0].replace(",", "."));
+			curso = LojaVirtualDB.consultarCurso(cursoId);
+			out.println(curso);
+			out.println("\nalterado para\n");
+			curso.setTitulo(titulo);
+			curso.setDescricao(descricao);
+			curso.setValor(preco);
+			LojaVirtualDB.alterarCurso(curso);
+			out.println(curso);
+			
+			
+			break;
+		case "/alterarpagamento" :
+			cursoId = Integer.parseInt(parametros.get("cursoId")[0]);
+			cpf = parametros.get("cpf")[0];
+
+			pid = new PagamentoId(cursoId, cpf);
+			pagamento = LojaVirtualDB.consultarPagamento(pid);
+			
+			out.println(pagamento);
+			//processamento da data//
+
+			//a data enviada pelo formulário está no formato "yyyy-MM-dd"
+			dataString = parametros.get("data")[0];
+			dia = Integer.parseInt(dataString.substring(8));
+			mes = Integer.parseInt(dataString.substring(5,7));
+			ano = Integer.parseInt(dataString.substring(0,4));
+			
+			//criando uma nova classe calendário para gerar a data da compra
+			// método de criação com o construtor Date() está deprecated
+
+			Calendar cal = Calendar.getInstance();
+
+			//a classe calendário começa a contar os meses a partir de "0"
+
+			cal.set(ano, mes - 1 , dia, 0, 0);
+			data = cal.getTime();
+			
+			pagamento.setData(data);
+
+			LojaVirtualDB.alterarPagamento(pagamento);
+			
+			out.println("alterado para");
+			out.println(pagamento);
+			break;
+
 		default:
 			System.out.println("badrequest");
 		}

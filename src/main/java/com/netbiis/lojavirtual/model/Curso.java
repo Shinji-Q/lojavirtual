@@ -46,7 +46,7 @@ public class Curso implements java.io.Serializable {
 	
 
 	public String toString() {
-		return "titulo: %s, id: %d, valor: %.2f".formatted(this.titulo, this.cursoId, this.valor.doubleValue());
+		return "titulo: %s\ndescrição:%s\nid: %d, valor: %.2f".formatted(this.titulo,this.descricao, this.cursoId, this.valor.doubleValue());
 	}
 
 	@Id
