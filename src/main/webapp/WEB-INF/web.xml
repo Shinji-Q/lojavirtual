@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" id="WebApp_ID" version="5.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="5.0">
   <display-name>lojavirtual</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -9,4 +9,30 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description>Página de cadastro de clientes no banco de dados</description>
+    <display-name>CadastrarCliente</display-name>
+    <servlet-name>CadastrarCliente</servlet-name>
+    <servlet-class>com.netbiis.lojavirtual.servlets.CadastrarCliente</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CadastrarCliente</servlet-name>
+    <url-pattern>/CadastrarCliente</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Registrar</display-name>
+    <servlet-name>Registrar</servlet-name>
+    <servlet-class>com.netbiis.lojavirtual.servlets.Registrar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Registrar</servlet-name>
+    <url-pattern>/Registrar</url-pattern>
+    <url-pattern>/registrarcliente</url-pattern>
+    <url-pattern>/registrarcurso</url-pattern>
+    <url-pattern>/registrarpagamento</url-pattern>
+    <url-pattern>/consultarcliente</url-pattern>
+    <url-pattern>/consultarcurso</url-pattern>
+    <url-pattern>/consultarpagamento</url-pattern>
+  </servlet-mapping>
 </web-app>
